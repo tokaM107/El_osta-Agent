@@ -1,177 +1,167 @@
-# langgraph_ai_agent
+# 🧭 El Osta AI Agent 
+
+**El Osta** (The Captain) is a smart, AI-powered public transit companion for Alexandria, Egypt. This repository hosts the intelligent agent core, interacts with geocoding and routing services, and delivers human-friendly transit directions.
+
+## 🌟 Project Overview
+
+This agent serves as the "brain" of the El Osta application. It translates a user's natural language query (e.g., "How do I get from Sidi Gaber to Misr Station?") into structured data, fetches precise coordinates, calculates the best route using a custom routing engine, and formats the response back into natural language.
+
+### Key Features
+*   **Natural Language Understanding:** Uses LLMs (Google Gemini) to parse complex user queries in English, Arabic, or Franco-Arabic.
+*   **Intelligent Routing:** Orchestrates a workflow to find optimal public transit routes involving buses, trams, and microbuses.
+*   **Graph-Based Architecture:** Built on [LangGraph](https://python.langchain.com/docs/langgraph) to manage state and control the flow of the conversation and data processing.
+*   **Modular Services:** Cleanly separated logic for Geocoding, Routing (gRPC), and LLM interaction.
+*   **Streamlit UI:** Includes a comprehensive multi-page dashboard for end-users and developers to interact with and test the agent.
+
+---
+
+## 🏗️ Agent Architecture
+
+The core of this project is a stateful graph defined in `app/graph/graph.py`. The agent follows a linear pipeline:
+
+1.  **Parse Node (`parse.py`):**
+    *   **Input:** User's natural language string.
+    *   **Action:** Calls the LLM to extract the `origin`, `destination`, and any preferences (walking distance, max transfers).
+    *   **Output:** Structured JSON with start/end locations.
+
+2.  **Geocode Node (`geocode.py`):**
+    *   **Input:** Location names from the Parse step.
+    *   **Action:** Queries a local database (PostGIS) or external geocoders to resolve names into `(latitude, longitude)` coordinates.
+    *   **Output:** Coordinates for start and end points.
+
+3.  **Route Node (`route.py`):**
+    *   **Input:** Coordinates and transit preferences.
+    *   **Action:** Sends a gRPC request to the dedicated El Osta Routing Server.
+    *   **Output:** A list of valid transit journeys (paths).
+
+4.  **Format Node (`format.py`):**
+    *   Takes the complex JSON response from the router and transforms it into a natural, conversational instruction list using the LLM.
+
+### State Management
+The `AgentState` (defined in `app/graph/state.py`) keeps track of:
+*   `user_query`: Original input.
+*   `parsed_data`: Extracted locations.
+*   `coordinates`: Lat/Long pairs.
+*   `raw_routes`: Journey objects from the gRPC server.
+*   `final_response`: Human-readable text.
+
+---
+
+## 🛠️ Services Detail
+
+The `app/services/` directory contains the integration logic for external systems:
+
+*   **LLM Service (`llm.py`):** Configures the Google Gemini Pro model with specific system prompts for parsing and formatting.
+*   **Routing Client (`routing_client.py`):** A high-performance gRPC client that communicates with the El Osta Routing Server. It handles message serialization using the generated stubs in `grpc_stubs/`.
+*   **Geocoding Service (`geocoding_serv.py`):** Executes spatial queries against the PostGIS database. It searches for landmarks, street names, and transit stops.
+*   **Format Utility (`format_output.py`):** Post-processing logic to ensure the AI output matches the user's preferred language and tone.
+
+---
+
+## 📂 Project Structure Explained
+
+```text
+├── app/
+│   ├── app.py                  # Streamlit Setup & Main Entry for UI
+│   ├── config.py               # Configuration constants
+│   ├── main.py                 # CLI/Script entry point to run the graph
+│   │
+│   ├── pages/                  # Streamlit Pages
+│   │   ├── 1_🤖_El_Osta_AI.py    # Main AI Chat Interface
+│   │   ├── 2_🚌_Routing_Test.py  # Developer tool for testing routing API
+│   │   └── 3_📍_Geocoding.py     # Developer tool for testing geocoding
+│   │
+│   ├── graph/                  # LangGraph Definitions
+│   │   ├── graph.py            # The graph topology (nodes & edges)
+│   │   ├── state.py            # AgentState definition (TypedDict)
+│   │   └── nodes/              # Individual step implementations
+│   │       ├── parse.py        # Extract intent from text
+│   │       ├── geocode.py      # Resolve addresses
+│   │       ├── route.py        # Fetch routes
+│   │       └── format.py       # Generate final answer
+│   │
+│   ├── services/               # External Integrations
+│   │   ├── llm.py              # Interface for Google Gemini LLM
+│   │   ├── routing_client.py   # gRPC Client definition
+│   │   ├── geocoding_serv.py   # Database/API Geocoding logic
+│   │   └── format_output.py    # Utilities to clean text output
+│   │
+│   ├── ui/                     # UI Styling & Theming
+│   │   └── theme.py            # CSS Injection & Theme Management
+│   │
+│   ├── grpc/                   # Protocol Buffer Definitions
+│   │   └── routing.proto       # Service contract
+│   └── grpc_stubs/             # Generated gRPC Python Code
+
+├── requirements.txt            # Python dependencies
+└── README.md                   # Project documentation
+```
 
 
-    ## Project structure (current)
+## 🚀 Getting Started
 
-    - confg.py
-    - main.py
-    - graph/
-        - graph.py
-        - state.py
-        - nodes/
-            - parse.py
-            - geocode.py
-            - route.py
-            - format.py
-    - grpc/
-        - routing.proto
-    - grpc_stubs/
-        - routing_pb2.py
-        - routing_pb2_grpc.py
-    - memory/
-    - services/
-        - llm.py
-        - geocoding_serv.py
-        - routing_client.py
-        - decode_trips.py
-        - format_output.py
-    - testings/
-        - parse_test.py
-        - geo_test.py
-        - route_test.py
-        - decoding_test.py
-        - test_graph.py
-        - tempCodeRunnerFile.py
-    - __pycache__/ (generated Python bytecode; safe to ignore)
+### Prerequisites
 
-    ## What each file contains (simple)
+*   **Python 3.10+**
+*   **Google Gemini API Key:** Required for natural language processing tasks.
+*   **Routing Server:** Access to an instance of the [El Osta Routing Server](https://github.com/Marwan051/final_project_routing_server).
+*   **Database:** Access to a PostGIS database from the [Database Repository](https://github.com/Marwan051/final-project-database).
 
-    - confg.py — basic app configuration (constants, env settings).
-    - main.py — entry point; builds and runs the agent/graph.
-    - graph/graph.py — defines the LangGraph workflow and node wiring.
-    - graph/state.py — shared state model passed between nodes.
-    - graph/nodes/parse.py — parses user input into structured fields.
-    - graph/nodes/geocode.py — turns locations into coordinates.
-    - graph/nodes/route.py — requests routes given waypoints.
-    - graph/nodes/format.py — formats final results for output.
-    - grpc/routing.proto — gRPC service definition for routing.
-    - grpc_stubs/routing_pb2.py — protobuf message classes (generated).
-    - grpc_stubs/routing_pb2_grpc.py — gRPC client/server stubs (generated).
-    - memory/ — helpers or stores for agent memory (placeholder).
-    - services/llm.py — LLM interface (prompting, responses).
-    - services/geocoding_serv.py — geocoding service wrapper.
-    - services/routing_client.py — gRPC client to the routing service.
-    - services/decode_trips.py — decodes encoded trip/route data.
-    - services/format_output.py — shapes/cleans the output payload.
-    - testings/parse_test.py — tests for input parsing.
-    - testings/geo_test.py — tests for geocoding.
-    - testings/route_test.py — tests for routing logic.
-    - testings/decoding_test.py — tests for trip decoding.
-    - testings/test_graph.py — tests for graph execution.
-    - testings/tempCodeRunnerFile.py — temporary scratch file (safe to remove).
+### Installation
 
-
-
-
-    # langgraph_ai_agent
-
-
-    ## Project structure (current)
-
-    - confg.py
-    - main.py
-    - graph/
-    - grpc/
-    - grpc_stubs/
-    - memory/
-    - services/
-    - testings/
-    - __pycache__/ (generated Python bytecode; safe to ignore)
-
-    ## What each folder contains (simple)
-
-    - graph — LangGraph workflow. Holds the graph definition, shared state, and node implementations for parse, geocode, route, and format steps.
-    - grpc — Protobuf definitions for the routing service API used by the agent.
-    - grpc_stubs — Auto-generated Python protobuf and gRPC client/server stubs. Regenerate when the proto changes; otherwise do not edit.
-    - memory — Placeholder for agent memory helpers or stores. Extend as needed.
-    - services — External integrations and utility functions (LLM interface, geocoding, routing client, trip decoding, output formatting).
-    - testings — Unit and integration tests for parsing, geocoding, routing, decoding, and graph execution.
-    - __pycache__ — Python bytecode cache; ignore or clean.
-
-    Top-level files:
-    - confg.py — Runtime configuration (constants, environment variables).
-    - main.py — Entry point to build and run the agent pipeline.
-
-    ## Overview
-
-    This agent parses user input, geocodes locations, requests routes via gRPC, and formats results. The workflow is implemented with LangGraph, using modular nodes for each step.
-
-    ## Prerequisites
-
-    - Python 3.10+
-    - pip
-    - gRPC runtime; protoc only if you plan to regenerate stubs
-
-    ## Setup
-
-    - Create a virtual environment and install dependencies:
-        - If you have a requirements file or pyproject, install from it.
-        - Typical packages: grpcio, grpcio-tools (for regeneration), protobuf, and your chosen LLM/geocoding SDKs.
-    - Configure environment variables or edit confg.py for API keys and endpoints.
-
-    Example:
-    ```
-    python -m venv .venv
-    source .venv/bin/activate  # Windows: .venv\Scripts\activate
-    pip install grpcio grpcio-tools protobuf
-    # plus any LLM/geocoding client libs you use
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/RowanFayez/El_osta-Agent.git
+    cd El_osta-Agent
     ```
 
-    ## Running
-
-    - Ensure the routing service is reachable (your gRPC server or external endpoint).
-    - Start the agent:
-    ```
-    python main.py
+2.  **Create a virtual environment:**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
     ```
 
-    ## Testing
-
-    - Run tests in the testings folder:
-    ```
-    pytest
-    # or
-    python -m unittest discover -s testings
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
     ```
 
-    ## Regenerating gRPC stubs
+### Configuration
 
-    If grpc/routing.proto changes, regenerate stubs:
-    ```
-    python -m grpc_tools.protoc \
-        -I grpc \
-        --python_out=grpc_stubs \
-        --grpc_python_out=grpc_stubs \
-        grpc/routing.proto
-    ```
+Create a `.env` file in the root directory and provide the necessary credentials:
 
-    ## Architecture notes
+```env
+GOOGLE_API_KEY=your_gemini_api_key_here
+PG_DB_NAME=transport_db
+PG_USER=postgres
+PG_PASSWORD=postgres
 
-    - Parse → Geocode → Route → Format, coordinated by graph/graph.py and shared via graph/state.py.
-    - Services encapsulate external calls to keep nodes focused on data flow.
+```
+4. **run database docker container**
+at : https://github.com/Marwan051/final-project-database?tab=readme-ov-file 
 
-    ## Configuration
+5. **run routing server docker container**
+at : https://github.com/Marwan051/final_project_routing_server 
 
-    - Adjust confg.py or environment variables for:
-        - LLM provider keys
-        - Geocoding API keys
-        - Routing gRPC host/port
-        - Any model or service tuning parameters
+### Running the Agent
 
-    ## Contributing
+#### 1. Streamlit UI (Recommended)
+To launch the interactive dashboard and chat interface:
+```bash
+streamlit run app/app.py
+```
 
-    - Open issues for bugs or enhancements.
-    - Keep changes small and covered by tests in testings.
-    - Run formatting and linters if configured.
+#### Work for Second Semester
 
-    ## License
+1. Train a Router on Different Types of Prompts
+* Prepare and categorize prompts that users might input (short, long, complex, or multi-lingual).
+* Fine-tune the routing logic so queries are sent to the correct module (Trip Planneing, information about route, etc.).
+* Evaluate performance with test prompts and measure accuracy in selecting the right handler.
+2. Build a RAG (Retrieval-Augmented Generation) Model for Route Queries
+* Connect the model to the routes database to answer user queries dynamically.
 
-    - Add a LICENSE file or specify the license here.
-    - Ensure third-party service usage complies with their terms.
 
-    ## Troubleshooting
-
-    - Import errors: verify virtual environment and installed packages.
-    - gRPC errors: confirm server address matches confg.py and stubs are up to date.
-    - Parsing/geocoding failures: check API keys and rate limits.
-    - Test failures: run tests with verbose output and inspect logs.
+3. Implement Short-Term and Long-Term Memory
+* Short-Term Memory: Store recent queries and their context during a single session for follow-ups.
+* Long-Term Memory: Maintain persistent user preferences, frequent routes, and learning patterns across sessions.
+Ensure memory integration doesn’t slow down real-time responses.
