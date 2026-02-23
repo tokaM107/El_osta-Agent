@@ -29,7 +29,7 @@ def format_node(state: dict) -> dict:
             float(summary.get("total_time_minutes", 0)),
         )
 
-    best_journeys = sorted(journeys, key=_rank)[:5]
+    best_journeys = sorted(journeys, key=_rank)[:3]
 
     # 2️⃣ formatting (LLM)
     user_text = format_server_journeys_for_user_llm(
@@ -40,7 +40,6 @@ def format_node(state: dict) -> dict:
 
     print(f"[FORMAT] Done in {time.time()-start:.1f}s")
 
-    # 4️⃣ رجوع النتيجة
     return {
         **state,
         "final_answer": user_text
