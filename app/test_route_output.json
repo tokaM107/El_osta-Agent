@@ -1,0 +1,631 @@
+{
+    "num_journeys": 3,
+    "journeys": [
+        {
+            "id": 1,
+            "text_summary": "Total Duration: 26 minutes, Total Cost: E\u00a311, Transfers: 1, Total Walking: 995m, walk 365m (5 min), take Microbus  to Green Plaza Mall (E\u00a36, 7 min) - Board at \"Suez Canal Pedestrian Bridge\", Exit at \"Seka Hadeed Bridge\", walk 0m (1 min) - Transfer from El-Mansheya - Green Plaza Mall to Hanuvil - Sidi Gabir, take Microbus  to Sidi Gabir (E\u00a35, 8 min) - Board at \"Seka Hadeed Bridge\", Exit at \"Victor Emmanuel Square\", walk 630m (8 min)",
+            "summary": {
+                "total_time_minutes": 26,
+                "total_distance_meters": 995,
+                "walking_distance_meters": 995,
+                "transfers": 1,
+                "cost": 11.0,
+                "modes": [
+                    "microbus"
+                ]
+            },
+            "legs": [
+                {
+                    "type": "walk",
+                    "distance_meters": 365,
+                    "duration_minutes": 5,
+                    "path": [
+                        {
+                            "lon": 31.1938538,
+                            "lat": 29.9217629
+                        },
+                        {
+                            "lon": 31.1936412,
+                            "lat": 29.9218891
+                        },
+                        {
+                            "lon": 31.1935963,
+                            "lat": 29.9215341
+                        },
+                        {
+                            "lon": 31.1935851,
+                            "lat": 29.9214452
+                        },
+                        {
+                            "lon": 31.1935528,
+                            "lat": 29.9211876
+                        },
+                        {
+                            "lon": 31.1935157,
+                            "lat": 29.9208968
+                        },
+                        {
+                            "lon": 31.1941682,
+                            "lat": 29.9204641
+                        },
+                        {
+                            "lon": 31.1947657,
+                            "lat": 29.9201266
+                        },
+                        {
+                            "lon": 31.1952756,
+                            "lat": 29.9197953
+                        },
+                        {
+                            "lon": 31.1953692,
+                            "lat": 29.9199927
+                        }
+                    ]
+                },
+                {
+                    "type": "trip",
+                    "trip_id": "6LBLdjAw8E6T2OCvlWEr8-07:00:00",
+                    "mode": "microbus",
+                    "route_short_name": "Microbus ",
+                    "headsign": "Green Plaza Mall",
+                    "fare": 6.0,
+                    "duration_minutes": 7,
+                    "from": {
+                        "stop_id": 406,
+                        "name": "Suez Canal Pedestrian Bridge",
+                        "coord": {
+                            "lon": 31.19548991767737,
+                            "lat": 29.92015267350003
+                        }
+                    },
+                    "to": {
+                        "stop_id": 432,
+                        "name": "Seka Hadeed Bridge",
+                        "coord": {
+                            "lon": 31.19743797133326,
+                            "lat": 29.953688336207225
+                        }
+                    },
+                    "path": []
+                },
+                {
+                    "type": "transfer",
+                    "from_trip_id": "6LBLdjAw8E6T2OCvlWEr8-07:00:00",
+                    "to_trip_id": "gSfwa8Ce0UZivfHRgFQmi-07:00:00",
+                    "from_trip_name": "El-Mansheya - Green Plaza Mall",
+                    "to_trip_name": "Hanuvil - Sidi Gabir",
+                    "walking_distance_meters": 0,
+                    "duration_minutes": 1,
+                    "path": [
+                        {
+                            "lon": 31.197386,
+                            "lat": 29.9537905
+                        }
+                    ]
+                },
+                {
+                    "type": "trip",
+                    "trip_id": "gSfwa8Ce0UZivfHRgFQmi-07:00:00",
+                    "mode": "microbus",
+                    "route_short_name": "Microbus ",
+                    "headsign": "Sidi Gabir",
+                    "fare": 5.0,
+                    "duration_minutes": 8,
+                    "from": {
+                        "stop_id": 431,
+                        "name": "Seka Hadeed Bridge",
+                        "coord": {
+                            "lon": 31.197434185626555,
+                            "lat": 29.953859011245225
+                        }
+                    },
+                    "to": {
+                        "stop_id": 321,
+                        "name": "Victor Emmanuel Square",
+                        "coord": {
+                            "lon": 31.214939,
+                            "lat": 29.945402
+                        }
+                    },
+                    "path": []
+                },
+                {
+                    "type": "walk",
+                    "distance_meters": 630,
+                    "duration_minutes": 8,
+                    "path": [
+                        {
+                            "lon": 31.2106241,
+                            "lat": 29.9461281
+                        },
+                        {
+                            "lon": 31.2113813,
+                            "lat": 29.9457907
+                        },
+                        {
+                            "lon": 31.2114355,
+                            "lat": 29.9457674
+                        },
+                        {
+                            "lon": 31.211617,
+                            "lat": 29.9456895
+                        },
+                        {
+                            "lon": 31.211856,
+                            "lat": 29.9455899
+                        },
+                        {
+                            "lon": 31.2121004,
+                            "lat": 29.9454883
+                        },
+                        {
+                            "lon": 31.2122452,
+                            "lat": 29.9458323
+                        },
+                        {
+                            "lon": 31.2125492,
+                            "lat": 29.9456858
+                        },
+                        {
+                            "lon": 31.2126836,
+                            "lat": 29.9459987
+                        },
+                        {
+                            "lon": 31.2128852,
+                            "lat": 29.9464456
+                        },
+                        {
+                            "lon": 31.2131626,
+                            "lat": 29.946349
+                        },
+                        {
+                            "lon": 31.2134873,
+                            "lat": 29.946166
+                        },
+                        {
+                            "lon": 31.2140873,
+                            "lat": 29.9458284
+                        },
+                        {
+                            "lon": 31.2142504,
+                            "lat": 29.9452217
+                        },
+                        {
+                            "lon": 31.2146137,
+                            "lat": 29.945123
+                        },
+                        {
+                            "lon": 31.2149388,
+                            "lat": 29.9454022
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "text_summary": "Total Duration: 27 minutes, Total Cost: E\u00a311, Transfers: 1, Total Walking: 995m, walk 365m (5 min), take Microbus  to Green Plaza Mall (E\u00a36, 7 min) - Board at \"Suez Canal Pedestrian Bridge\", Exit at \"Seka Hadeed Bridge\", walk 0m (1 min) - Transfer from El-Mansheya - Green Plaza Mall to El-Mawqaf El-Geded - Sidi Gabir, take Microbus  to Sidi Gabir (E\u00a35, 8 min) - Board at \"Seka Hadeed Bridge\", Exit at \"Victor Emmanuel Square\", walk 630m (8 min)",
+            "summary": {
+                "total_time_minutes": 27,
+                "total_distance_meters": 995,
+                "walking_distance_meters": 995,
+                "transfers": 1,
+                "cost": 11.0,
+                "modes": [
+                    "microbus"
+                ]
+            },
+            "legs": [
+                {
+                    "type": "walk",
+                    "distance_meters": 365,
+                    "duration_minutes": 5,
+                    "path": [
+                        {
+                            "lon": 31.1938538,
+                            "lat": 29.9217629
+                        },
+                        {
+                            "lon": 31.1936412,
+                            "lat": 29.9218891
+                        },
+                        {
+                            "lon": 31.1935963,
+                            "lat": 29.9215341
+                        },
+                        {
+                            "lon": 31.1935851,
+                            "lat": 29.9214452
+                        },
+                        {
+                            "lon": 31.1935528,
+                            "lat": 29.9211876
+                        },
+                        {
+                            "lon": 31.1935157,
+                            "lat": 29.9208968
+                        },
+                        {
+                            "lon": 31.1941682,
+                            "lat": 29.9204641
+                        },
+                        {
+                            "lon": 31.1947657,
+                            "lat": 29.9201266
+                        },
+                        {
+                            "lon": 31.1952756,
+                            "lat": 29.9197953
+                        },
+                        {
+                            "lon": 31.1953692,
+                            "lat": 29.9199927
+                        }
+                    ]
+                },
+                {
+                    "type": "trip",
+                    "trip_id": "6LBLdjAw8E6T2OCvlWEr8-07:00:00",
+                    "mode": "microbus",
+                    "route_short_name": "Microbus ",
+                    "headsign": "Green Plaza Mall",
+                    "fare": 6.0,
+                    "duration_minutes": 7,
+                    "from": {
+                        "stop_id": 406,
+                        "name": "Suez Canal Pedestrian Bridge",
+                        "coord": {
+                            "lon": 31.19548991767737,
+                            "lat": 29.92015267350003
+                        }
+                    },
+                    "to": {
+                        "stop_id": 432,
+                        "name": "Seka Hadeed Bridge",
+                        "coord": {
+                            "lon": 31.19743797133326,
+                            "lat": 29.953688336207225
+                        }
+                    },
+                    "path": []
+                },
+                {
+                    "type": "transfer",
+                    "from_trip_id": "6LBLdjAw8E6T2OCvlWEr8-07:00:00",
+                    "to_trip_id": "-vGMBy-ffWWJVczaRlv5z-07:00:00",
+                    "from_trip_name": "El-Mansheya - Green Plaza Mall",
+                    "to_trip_name": "El-Mawqaf El-Geded - Sidi Gabir",
+                    "walking_distance_meters": 0,
+                    "duration_minutes": 1,
+                    "path": [
+                        {
+                            "lon": 31.197386,
+                            "lat": 29.9537905
+                        }
+                    ]
+                },
+                {
+                    "type": "trip",
+                    "trip_id": "-vGMBy-ffWWJVczaRlv5z-07:00:00",
+                    "mode": "microbus",
+                    "route_short_name": "Microbus ",
+                    "headsign": "Sidi Gabir",
+                    "fare": 5.0,
+                    "duration_minutes": 8,
+                    "from": {
+                        "stop_id": 431,
+                        "name": "Seka Hadeed Bridge",
+                        "coord": {
+                            "lon": 31.197434185626555,
+                            "lat": 29.953859011245225
+                        }
+                    },
+                    "to": {
+                        "stop_id": 321,
+                        "name": "Victor Emmanuel Square",
+                        "coord": {
+                            "lon": 31.214939,
+                            "lat": 29.945402
+                        }
+                    },
+                    "path": []
+                },
+                {
+                    "type": "walk",
+                    "distance_meters": 630,
+                    "duration_minutes": 8,
+                    "path": [
+                        {
+                            "lon": 31.2106241,
+                            "lat": 29.9461281
+                        },
+                        {
+                            "lon": 31.2113813,
+                            "lat": 29.9457907
+                        },
+                        {
+                            "lon": 31.2114355,
+                            "lat": 29.9457674
+                        },
+                        {
+                            "lon": 31.211617,
+                            "lat": 29.9456895
+                        },
+                        {
+                            "lon": 31.211856,
+                            "lat": 29.9455899
+                        },
+                        {
+                            "lon": 31.2121004,
+                            "lat": 29.9454883
+                        },
+                        {
+                            "lon": 31.2122452,
+                            "lat": 29.9458323
+                        },
+                        {
+                            "lon": 31.2125492,
+                            "lat": 29.9456858
+                        },
+                        {
+                            "lon": 31.2126836,
+                            "lat": 29.9459987
+                        },
+                        {
+                            "lon": 31.2128852,
+                            "lat": 29.9464456
+                        },
+                        {
+                            "lon": 31.2131626,
+                            "lat": 29.946349
+                        },
+                        {
+                            "lon": 31.2134873,
+                            "lat": 29.946166
+                        },
+                        {
+                            "lon": 31.2140873,
+                            "lat": 29.9458284
+                        },
+                        {
+                            "lon": 31.2142504,
+                            "lat": 29.9452217
+                        },
+                        {
+                            "lon": 31.2146137,
+                            "lat": 29.945123
+                        },
+                        {
+                            "lon": 31.2149388,
+                            "lat": 29.9454022
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "text_summary": "Total Duration: 32 minutes, Total Cost: E\u00a312, Transfers: 1, Total Walking: 1135m, walk 365m (5 min), take Microbus  to El-Mawqaf El-Geded (E\u00a35, 5 min) - Board at \"Suez Canal Pedestrian Bridge\", Exit at \"El Mawqaf El Geded\", walk 140m (1 min) - Transfer from El-Mansheya - El-Mawqaf El-Geded to Hanuvil - Sidi Gabir, take Microbus  to Sidi Gabir (E\u00a37, 14 min) - Board at \"El Mawqaf El Geded\", Exit at \"Victor Emmanuel Square\", walk 630m (8 min)",
+            "summary": {
+                "total_time_minutes": 32,
+                "total_distance_meters": 1135,
+                "walking_distance_meters": 1135,
+                "transfers": 1,
+                "cost": 12.0,
+                "modes": [
+                    "microbus"
+                ]
+            },
+            "legs": [
+                {
+                    "type": "walk",
+                    "distance_meters": 365,
+                    "duration_minutes": 5,
+                    "path": [
+                        {
+                            "lon": 31.1938538,
+                            "lat": 29.9217629
+                        },
+                        {
+                            "lon": 31.1936412,
+                            "lat": 29.9218891
+                        },
+                        {
+                            "lon": 31.1935963,
+                            "lat": 29.9215341
+                        },
+                        {
+                            "lon": 31.1935851,
+                            "lat": 29.9214452
+                        },
+                        {
+                            "lon": 31.1935528,
+                            "lat": 29.9211876
+                        },
+                        {
+                            "lon": 31.1935157,
+                            "lat": 29.9208968
+                        },
+                        {
+                            "lon": 31.1941682,
+                            "lat": 29.9204641
+                        },
+                        {
+                            "lon": 31.1947657,
+                            "lat": 29.9201266
+                        },
+                        {
+                            "lon": 31.1952756,
+                            "lat": 29.9197953
+                        },
+                        {
+                            "lon": 31.1953692,
+                            "lat": 29.9199927
+                        }
+                    ]
+                },
+                {
+                    "type": "trip",
+                    "trip_id": "v4sHde8sXh63a1CWeshcp-07:00:00",
+                    "mode": "microbus",
+                    "route_short_name": "Microbus ",
+                    "headsign": "El-Mawqaf El-Geded",
+                    "fare": 5.0,
+                    "duration_minutes": 5,
+                    "from": {
+                        "stop_id": 406,
+                        "name": "Suez Canal Pedestrian Bridge",
+                        "coord": {
+                            "lon": 31.19548991767737,
+                            "lat": 29.92015267350003
+                        }
+                    },
+                    "to": {
+                        "stop_id": 428,
+                        "name": "El Mawqaf El Geded",
+                        "coord": {
+                            "lon": 31.176456,
+                            "lat": 29.917673
+                        }
+                    },
+                    "path": []
+                },
+                {
+                    "type": "transfer",
+                    "from_trip_id": "v4sHde8sXh63a1CWeshcp-07:00:00",
+                    "to_trip_id": "gSfwa8Ce0UZivfHRgFQmi-07:00:00",
+                    "from_trip_name": "El-Mansheya - El-Mawqaf El-Geded",
+                    "to_trip_name": "Hanuvil - Sidi Gabir",
+                    "walking_distance_meters": 140,
+                    "duration_minutes": 1,
+                    "path": [
+                        {
+                            "lon": 31.1764679,
+                            "lat": 29.9176973
+                        },
+                        {
+                            "lon": 31.1764137,
+                            "lat": 29.9175563
+                        },
+                        {
+                            "lon": 31.1763735,
+                            "lat": 29.9174531
+                        },
+                        {
+                            "lon": 31.1761395,
+                            "lat": 29.9168597
+                        },
+                        {
+                            "lon": 31.1759889,
+                            "lat": 29.9164758
+                        },
+                        {
+                            "lon": 31.1759448,
+                            "lat": 29.9163548
+                        }
+                    ]
+                },
+                {
+                    "type": "trip",
+                    "trip_id": "gSfwa8Ce0UZivfHRgFQmi-07:00:00",
+                    "mode": "microbus",
+                    "route_short_name": "Microbus ",
+                    "headsign": "Sidi Gabir",
+                    "fare": 7.0,
+                    "duration_minutes": 14,
+                    "from": {
+                        "stop_id": 427,
+                        "name": "El Mawqaf El Geded",
+                        "coord": {
+                            "lon": 31.17585583439237,
+                            "lat": 29.91645438425775
+                        }
+                    },
+                    "to": {
+                        "stop_id": 321,
+                        "name": "Victor Emmanuel Square",
+                        "coord": {
+                            "lon": 31.214939,
+                            "lat": 29.945402
+                        }
+                    },
+                    "path": []
+                },
+                {
+                    "type": "walk",
+                    "distance_meters": 630,
+                    "duration_minutes": 8,
+                    "path": [
+                        {
+                            "lon": 31.2106241,
+                            "lat": 29.9461281
+                        },
+                        {
+                            "lon": 31.2113813,
+                            "lat": 29.9457907
+                        },
+                        {
+                            "lon": 31.2114355,
+                            "lat": 29.9457674
+                        },
+                        {
+                            "lon": 31.211617,
+                            "lat": 29.9456895
+                        },
+                        {
+                            "lon": 31.211856,
+                            "lat": 29.9455899
+                        },
+                        {
+                            "lon": 31.2121004,
+                            "lat": 29.9454883
+                        },
+                        {
+                            "lon": 31.2122452,
+                            "lat": 29.9458323
+                        },
+                        {
+                            "lon": 31.2125492,
+                            "lat": 29.9456858
+                        },
+                        {
+                            "lon": 31.2126836,
+                            "lat": 29.9459987
+                        },
+                        {
+                            "lon": 31.2128852,
+                            "lat": 29.9464456
+                        },
+                        {
+                            "lon": 31.2131626,
+                            "lat": 29.946349
+                        },
+                        {
+                            "lon": 31.2134873,
+                            "lat": 29.946166
+                        },
+                        {
+                            "lon": 31.2140873,
+                            "lat": 29.9458284
+                        },
+                        {
+                            "lon": 31.2142504,
+                            "lat": 29.9452217
+                        },
+                        {
+                            "lon": 31.2146137,
+                            "lat": 29.945123
+                        },
+                        {
+                            "lon": 31.2149388,
+                            "lat": 29.9454022
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "start_trips_found": 41,
+    "end_trips_found": 21,
+    "total_routes_found": 145
+}
